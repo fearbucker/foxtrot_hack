@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Financial Planner</h1>
+        <p>Plan your finances with projected grant support</p>
+    </header>
+    
+    <main>
+        <section id="user-input">
+            <h2>Enter Your Income and Expenses</h2>
+
+            <!-- Income Section -->
+            <div id="income-section">
+                <h3>Income Sources</h3>
+                <div id="income-container" class="input-container"></div>
+                <button type="button" onclick="addIncomeEntry()" class="add-button">Add Income Source</button>
+            </div>
+
+            <!-- Expenses Section -->
+            <div id="expense-section">
+                <h3>Expenses</h3>
+                <div id="expense-container" class="input-container"></div>
+                <button type="button" onclick="addExpenseEntry()" class="add-button">Add Expense</button>
+            </div>
+            
+            <button type="button" onclick="calculateBudget()" class="calculate-button">Calculate</button>
+        </section>
+
+        <!-- Display Section -->
+        <section id="display-section">
+            <h2>Results</h2>
+            <div id="results">
+                <p>Total Income: <span id="total-income">$0</span></p>
+                <p>Total Expenses: <span id="total-expenses">$0</span></p>
+                <p>Surplus/Deficit: <span id="surplus-deficit">$0</span></p>
+            </div>
+        </section>
+        
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>

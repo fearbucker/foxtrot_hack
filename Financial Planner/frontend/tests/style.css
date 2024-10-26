@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    background-color: #7fc8f8;
+    color: white;
+    padding: 1em 0;
+}
+
+main {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
+    color: #5aa9e6;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#results, #plans {
+    margin-top: 20px;
+}
+
+#add-expense {
+    background-color: red;
+}
+
+#add-expense:hover {
+    background-color: rgb(211, 0, 0);
+}
+
+.add-button {
+    margin-bottom: 10px;
+}
+
+.calculate-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #45a049;
+    background-color: white;
+    border-width: 2;
+    border-color: #45a049;
+}
+
+.calculate-button:hover {
+    background-color: #45a049;
+    color: white;
+}
+
+.remove-button {
+    background-color: #ff4d4d; /* Red color for remove button */
+    margin-left: 10px;
+}
+
+.remove-button:hover {
+    background-color: #d40000; /* Darker red on hover */
+}
+
+
