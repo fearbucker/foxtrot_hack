@@ -8,11 +8,21 @@ body {
 }
 
 header {
+    position: relative;
     text-align: center;
-    background-color: #7fc8f8;
+    background-color: #005035;
     color: white;
     padding: 1em 0;
 }
+
+#logo {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    height: 100px; 
+    width: auto; 
+}
+
 
 main {
     max-width: 600px;
@@ -24,7 +34,7 @@ main {
 }
 
 h2, h3 {
-    color: #5aa9e6;
+    color: #000;
 }
 
 label {
