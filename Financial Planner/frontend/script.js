@@ -1,3 +1,78 @@
+class Plan {
+    static MAX_GRANT = 7395;
+
+    constructor(income, tuition) {
+        this.grant = 0;
+
+        // Set field to numbers based on income and tuition.
+        if (income >= 66500) {
+            const difference = income - (income * 0.6805);
+            const EFC = difference - tuition;
+            this.grant = tuition - EFC;
+
+        } else if (income < 66500 && income >= 63079.1) {
+            const difference = income - (income * 0.67);
+            const EFC = difference - tuition;
+            this.grant = tuition - EFC;
+
+        } else if (income < 63079.1 && income >= 59658.2) {
+            const difference = income - (income * 0.66);
+            const EFC = difference - tuition;
+            this.grant = tuition - EFC;
+
+        } else if (income < 59658.2 && income >= 56237.3) {
+            const difference = income - (income * 0.65);
+            const EFC = difference - tuition;
+            this.grant = tuition - EFC;
+
+        } else if (income < 56237.3 && income >= 52816.4) {
+            const difference = income - (income * 0.64);
+            const EFC = difference - tuition;
+            this.grant = tuition - EFC;
+
+        } else if (income < 52816.4 && income >= 49395.5) {
+            const difference = income - (income * 0.63);
+            const EFC = difference - tuition;
+            this.grant = tuition - EFC;
+
+        } else if (income < 49395.5 && income >= 45974.6) {
+            const difference = income - (income * 0.62);
+            const EFC = difference - tuition;
+            this.grant = tuition - EFC;
+
+        } else if (income < 45974.6 && income >= 42553.7) {
+            const difference = income - (income * 0.61);
+            const EFC = difference - tuition;
+            this.grant = tuition - EFC;
+
+        } else if (income < 42553.7 && income >= 39132.8) {
+            const difference = income - (income * 0.60);
+            const EFC = difference - tuition;
+            this.grant = tuition - EFC;
+
+        } else if (income < 39132.8 && income >= 35711.9) {
+            const difference = income - (income * 0.59);
+            const EFC = difference - tuition;
+            this.grant = tuition - EFC;
+
+        } else if (income < 35711.9 && income >= 32291) {
+            const difference = income - (income * 0.58);
+            const EFC = difference - tuition;
+            this.grant = tuition - EFC;
+
+        } else if (income < 32291) {
+            const difference = income - (income * 0.57142857);
+            const EFC = difference - tuition;
+            this.grant = tuition - EFC;
+        }
+    }
+
+    getGrant() {
+        return this.grant;
+    }
+}
+
+
 let incomeEntryCount = 0;
 let expenseEntryCount = 0;
 
@@ -63,25 +138,23 @@ function calculateBudget() {
     const monthlyExpenses = (totalExpenses / 12).toFixed(2);
     const surplusOrDeficit = (totalIncome - totalExpenses) / 12;
 
-    /*const resultElement = document.getElementById('surplus-deficit');
-    resultElement.textContent = `$${Math.abs(surplusOrDeficit).toFixed(2)} ${surplusOrDeficit >= 0 ? 'Surplus' : 'Deficit'}`;
-    resultElement.style.color = surplusOrDeficit >= 0 ? 'green' : 'red';
+    // Calculate the grant using the Plan class
+    const tuition = monthlyExpenses * 12; // Assuming tuition is based on annual expenses
+    const plan = new Plan(totalIncome, tuition);
+    const grant = plan.getGrant();
 
-    document.getElementById('total-income').textContent = `$${monthlyIncome}`;
-    document.getElementById('total-expenses').textContent = `$${monthlyExpenses}`;*/
-
-    // Display the plan section
+    // Display the results
     document.getElementById('plan').style.display = 'block';
     document.getElementById('plan-income').textContent = `$${monthlyIncome}`;
     document.getElementById('plan-expenses').textContent = `$${monthlyExpenses}`;
+    document.getElementById('grant-amount').textContent = `$${grant.toFixed(2)}`;
     
-    // Placeholder for payment increments (you can update this later with actual logic)
+    // Placeholder for payment increments
     document.getElementById('payment-increments').textContent = `To be determined...`;
 
     // Scroll to the plan section
     document.getElementById('plan').scrollIntoView({ behavior: 'smooth' });
 }
-
 
 function calculateAnnualAmount(amount, frequency) {
     switch (frequency) {
