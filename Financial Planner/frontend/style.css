@@ -126,3 +126,70 @@ button:hover {
     display: none;
 }
 
+.chart { 
+    width: 400px;  /* Increase width */
+    height: 300px; /* Increase height */
+    display: flex; 
+    justify-content: space-around; 
+    align-items: flex-end; 
+    border: 1px solid #ccc; 
+    padding: 10px; 
+    background-color: #f4f4f4; 
+} 
+
+@keyframes slideUp {
+    from {
+        height: 0;
+    }
+    to {
+        height: 100%; /* Height will be dynamically set by JavaScript */
+    }
+}
+
+.bar {
+    width: 50px;
+    background-color: blue;
+    transition: height 0.5s ease-in-out;
+    position: relative;
+    animation: slideUp 1s ease-out; /* Adds the slide-up animation */
+}
+
+.bar-label {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+}
+
+.chart-container {
+    display: flex;
+    align-items: flex-end;
+}
+
+.y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 300px; /* Match chart height */
+    margin-right: 10px;
+}
+
+.y-tick {
+    font-size: 14px;
+    color: #555;
+    width: 30px; /* Align with the bar chart */
+    text-align: right;
+}
+
+ .income-bar {
+    background-color: #4CAF50;
+}
+
+.grant-bar {
+    background-color: #2196F3;
+}

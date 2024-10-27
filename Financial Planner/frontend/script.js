@@ -136,10 +136,8 @@ function calculateBudget() {
 
     const monthlyIncome = (totalIncome / 12).toFixed(2);
     const monthlyExpenses = (totalExpenses / 12).toFixed(2);
-    const surplusOrDeficit = (totalIncome - totalExpenses) / 12;
 
-    // Calculate the grant using the Plan class
-    const tuition = monthlyExpenses * 12; // Assuming tuition is based on annual expenses
+    const tuition = monthlyExpenses * 12;
     const plan = new Plan(totalIncome, tuition);
     const grant = plan.getGrant();
 
@@ -148,13 +146,42 @@ function calculateBudget() {
     document.getElementById('plan-income').textContent = `$${monthlyIncome}`;
     document.getElementById('plan-expenses').textContent = `$${monthlyExpenses}`;
     document.getElementById('grant-amount').textContent = `$${grant.toFixed(2)}`;
-    
-    // Placeholder for payment increments
-    document.getElementById('payment-increments').textContent = `To be determined...`;
 
-    // Scroll to the plan section
-    document.getElementById('plan').scrollIntoView({ behavior: 'smooth' });
+    // Calculate bar heights as percentages
+    const incomeHeight = Math.min((totalIncome / 100000) * 100, 100); 
+    const grantHeight = Math.min((grant / Plan.MAX_GRANT) * 100, 100);
+
+    // Clear the chart container
+    const chartContainer = document.getElementById('incomeGrantChart');
+    chartContainer.innerHTML = ''; 
+
+    // Income Bar
+    const incomeBar = document.createElement('div');
+    incomeBar.classList.add('bar', 'income-bar');
+    incomeBar.style.height = incomeHeight + '%';
+    
+    // Income Label
+    const incomeLabel = document.createElement('div');
+    incomeLabel.classList.add('bar-label');
+    incomeLabel.textContent = 'Income';
+    incomeBar.appendChild(incomeLabel);
+
+    chartContainer.appendChild(incomeBar);
+
+    // Grant Bar
+    const grantBar = document.createElement('div');
+    grantBar.classList.add('bar', 'grant-bar');
+    grantBar.style.height = grantHeight + '%';
+
+    // Grant Label
+    const grantLabel = document.createElement('div');
+    grantLabel.classList.add('bar-label');
+    grantLabel.textContent = 'Grant';
+    grantBar.appendChild(grantLabel);
+
+    chartContainer.appendChild(grantBar);
 }
+
 
 function calculateAnnualAmount(amount, frequency) {
     switch (frequency) {
