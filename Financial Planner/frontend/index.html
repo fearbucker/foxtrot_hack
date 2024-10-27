@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Planner</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -204,7 +205,29 @@
 
                 <!--<canvas id="costGraph" width="400" height="200"></canvas>
                 <script src="chart.js"></script> -->
+
+                <div class="chart-container">
+                    <div class="y-axis">
+                        <div class="y-tick">100%</div>
+                        <div class="y-tick">75%</div>
+                        <div class="y-tick">50%</div>
+                        <div class="y-tick">25%</div>
+                        <div class="y-tick">0%</div>
+                    </div>
+                    <div class="chart" id="incomeGrantChart">
+                        <!-- Bars will be dynamically added here -->
+                    </div>
+                </div>
+
+                <section id="display-section">
+                    ...
+                    <h2>Grant Distribution</h2>
+                    <canvas id="grantPieChart" width="400" height="400"></canvas>
+                </section>
+
             </div>
+
+            
         </section>
 
         
