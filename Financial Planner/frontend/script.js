@@ -2,6 +2,9 @@ class Plan {
     static MAX_GRANT = 7395;
 
     constructor(income, tuition) {
+        if (tuition > 11000) {
+            tuition = 11000;
+        }
         this.grant = 0;
 
         // Set field to numbers based on income and tuition.
@@ -64,8 +67,14 @@ class Plan {
             const difference = income - (income * 0.57142857);
             const EFC = difference - tuition;
             this.grant = tuition - EFC;
+        } 
+        if (this.grant > 7300) {
+            this.grant = 7300;
         }
+
     }
+
+
 
     getGrant() {
         return this.grant;
@@ -138,22 +147,64 @@ function calculateBudget() {
     const monthlyExpenses = (totalExpenses / 12).toFixed(2);
     const surplusOrDeficit = (totalIncome - totalExpenses) / 12;
 
-    // Calculate the grant using the Plan class
-    const tuition = monthlyExpenses * 12; // Assuming tuition is based on annual expenses
+    const tuition = monthlyExpenses * 12; 
     const plan = new Plan(totalIncome, tuition);
     const grant = plan.getGrant();
 
-    // Display the results
     document.getElementById('plan').style.display = 'block';
     document.getElementById('plan-income').textContent = `$${monthlyIncome}`;
     document.getElementById('plan-expenses').textContent = `$${monthlyExpenses}`;
     document.getElementById('grant-amount').textContent = `$${grant.toFixed(2)}`;
     
-    // Placeholder for payment increments
     document.getElementById('payment-increments').textContent = `To be determined...`;
 
+    // Data for the graph
+    generateGraph(totalExpenses, totalIncome);
+
     // Scroll to the plan section
-    document.getElementById('plan').scrollIntoView({ behavior: 'smooth' });
+    // document.getElementById('plan').scrollIntoView({ behavior: 'smooth' });
+}
+let myChart;
+
+function generateGraph(expenses, income) {
+    const ctx = document.getElementById('costGraph').getContext('2d');
+
+    // Destroy the existing chart if it exists
+    if (myChart) {
+        myChart.destroy();
+    }
+
+    const years = [1, 2, 3, 4, 5]; // Next 5 years
+    const expenseData = years.map(year => expenses * year); // Cumulative expenses
+    const incomeData = years.map(year => income * year); // Cumulative income
+
+    myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: [
+                {
+                    label: 'Expenses',
+                    data: expenseData,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    fill: false,
+                },
+                {
+                    label: 'Income',
+                    data: incomeData,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    fill: false,
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 }
 
 function calculateAnnualAmount(amount, frequency) {
