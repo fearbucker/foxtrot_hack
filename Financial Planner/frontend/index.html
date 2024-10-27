@@ -197,19 +197,23 @@
                 <p><strong>Income:</strong> <span id="plan-income">$0</span></p>
                 <p><strong>Expenses:</strong> <span id="plan-expenses">$0</span></p>
                 <p><strong>Estimated Grant Amount: </strong> <span id="grant-amount">To be determined...</span></p>
-            </div>
-
-            <div class="chart-container">
-                <div class="y-axis">
-                    <div class="y-tick">100%</div>
-                    <div class="y-tick">75%</div>
-                    <div class="y-tick">50%</div>
-                    <div class="y-tick">25%</div>
-                    <div class="y-tick">0%</div>
+                <div class="chart-container">
+                    <div class="y-axis">
+                        <div class="y-tick">100%</div>
+                        <div class="y-tick">75%</div>
+                        <div class="y-tick">50%</div>
+                        <div class="y-tick">25%</div>
+                        <div class="y-tick">0%</div>
+                    </div>
+                    <div class="chart" id="incomeGrantChart">
+                        <!-- Bars will be dynamically added here -->
+                    </div>
                 </div>
-                <div class="chart" id="incomeGrantChart">
-                    <!-- Bars will be dynamically added here -->
-                </div>
+                <section id="display-section">
+                    ...
+                    <h2>Grant Distribution</h2>
+                    <canvas id="grantPieChart" width="400" height="400"></canvas>
+                </section>
             </div>
         </section>
         

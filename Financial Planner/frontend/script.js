@@ -182,7 +182,6 @@ function calculateBudget() {
     chartContainer.appendChild(grantBar);
 }
 
-
 function calculateAnnualAmount(amount, frequency) {
     switch (frequency) {
         case 'daily': return amount * 365;
@@ -193,3 +192,54 @@ function calculateAnnualAmount(amount, frequency) {
         default: return 0;
     }
 }
+
+function drawPieChart() {
+    const grants = [
+        { name: "FSEOG", amount: 2050 },
+        { name: "TEACH", amount: 4000 },
+        { name: "Next State NC", amount: 5000 },
+        { name: "RA Housing stipend", amount: 4000 },
+        { name: "No housing expense", amount: 3515 },
+        { name: "SAG and TAG", amount: 3000 } // Placeholder amount for SAG and TAG
+    ];
+
+    const totalAmount = grants.reduce((sum, grant) => sum + grant.amount, 0);
+    const canvas = document.getElementById('grantPieChart');
+    const ctx = canvas.getContext('2d');
+    let startAngle = 0;
+
+    grants.forEach((grant, index) => {
+        const sliceAngle = (grant.amount / totalAmount) * 2 * Math.PI;
+        ctx.beginPath();
+        ctx.moveTo(200, 200); // Center of the canvas
+        ctx.arc(200, 200, 150, startAngle, startAngle + sliceAngle); // 150 is the radius
+        ctx.closePath();
+
+        // Set colors for each slice
+        const colors = ["#ff9999","#66b3ff","#99ff99","#ffcc99", "#c2c2f0", "#ffb3e6"];
+        ctx.fillStyle = colors[index % colors.length];
+        ctx.fill();
+
+        // Calculate position for the dollar amount inside the slice
+        const amountX = 200 + (100 * Math.cos(startAngle + sliceAngle / 2)); // Adjusted radius for amount positioning
+        const amountY = 200 + (100 * Math.sin(startAngle + sliceAngle / 2));
+        
+        // Draw dollar amount inside the slice
+        ctx.fillStyle = "#fff"; // White text for contrast
+        ctx.font = "bold 14px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText(`$${grant.amount}`, amountX, amountY);
+
+        // Draw label outside the slice
+        const labelX = 200 + (180 * Math.cos(startAngle + sliceAngle / 2)); // Radius + 30 for label
+        const labelY = 200 + (180 * Math.sin(startAngle + sliceAngle / 2));
+        ctx.fillStyle = "#333";
+        ctx.fillText(grant.name, labelX, labelY);
+
+        // Update startAngle for next slice
+        startAngle += sliceAngle;
+    });
+}
+
+// Call drawPieChart function after DOM content is loaded
+document.addEventListener('DOMContentLoaded', drawPieChart);
